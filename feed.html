@@ -23,6 +23,7 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
   <header>
   <!--Navbar -->
@@ -47,6 +48,9 @@
          <li class="nav-item">
           <a class="nav-link" href="profil.html" title="Min profil"><i class="fas fa-user"></i>Min profil</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profil.html" title="User"><i class="fas fa-user" id="welcomeMessage"></i></a>
+        </li>
       	<li class="nav-item">
           <a class="nav-link" href="index.html" title="Logga ut"><i class="fas fa-sign-out-alt"></i>Logga ut</a>
         </li>
@@ -56,7 +60,7 @@
 <!--/.Navbar -->
   </header>
 
-
+<!--Feeden börjar här-->
   <div class="container">
   <div class="row">
     <div class="col-sm-auto">
@@ -239,21 +243,30 @@
   </div>
   </footer>
 
-  <!--Footer-->
+
       <!-- jQuery -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
+     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
+     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-    <script> 
+    <script>
       $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();
+        $('[data-toggle="tooltip"]').tooltip();
       });
     </script>
 
-
+<!-- SCRIPT FÖR ATT VISA USERNAME PÅ SIDAN EFTER INLOGGNING-->
+    <script>
+    window.onload = function() {
+       var name = localStorage.getItem('username');
+       if (name != "undefined" || name != "null") {
+       document.getElementById('welcomeMessage').innerHTML = "Hello " + name + "!";
+       } else
+       document.getElementById('welcomeMessage').innerHTML = "Hello!";
+        }
+    </script>
 
 </body>
 </html>

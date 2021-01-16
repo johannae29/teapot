@@ -21,50 +21,61 @@
   <!-- My CSS -->
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body class="text-center" screen_capture_injected="true">
-    <form class="form-signin">
+    <form class="form-signin" name="loginform" onSubmit="return validateForm();" action="feed.html" method="post">
     <img class="mb-4" src="img/kettle.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Logga in</h1>
-    <label for="inputEmail" class="sr-only">Mejladress</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Mejladress" required="" autofocus="">
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input type="text" name="usr" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
     <label for="inputPassword" class="sr-only">Lösenord</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Lösenord" required="">
-    <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Kom ihåg mig
-        </label>
-      </div>
-      <a href="feed.html" class="btn btn-lg">Logga in</a>
+    <input type="password" name="pword" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <input type="submit" value="Login" class="btn btn-lg"/>
     </form>
-
-
-    <!--Footer-->
-  <!--footer class="footerLists">
-  <div>
-    <ul class="listFooter">
-      <li><h3>Kontakt</h3></li>
-      <li>012 345 67 89</li>
-      <li>Måndag - Fredag 08 - 18</li>
-    </ul>
-    <ul class="listFooter">
-      <li><h3>Adress</h3></li>
-      <li>Adress 13 </li>
-      <li>211 20 Malmö</li>
-    </ul>
-  </div>
-  </footer-->
 
   <!--Footer-->
 
      <!-- jQuery -->
-     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
      <!-- Bootstrap tooltips -->
-     <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
      <!-- Bootstrap core JavaScript -->
-     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
      <!-- MDB core JavaScript -->
-     <script type="text/javascript" src="js/mdb.min.js"></script>
-     <!-- Your custom scripts (optional) -->
-     <script type="text/javascript"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+
+  <!--FUNKTION FÖR INLOGG, SPARAR ANVÄNDARE I LOCALSTORAGE OCH KOLLAR SÅ ATT INLOGG STÄMMER*/-->
+  <script>
+  function validateForm() {
+    var un = document.loginform.usr.value;
+      var pw = document.loginform.pword.value;
+      var username = "username"; 
+      window.localStorage.setItem('username',username);
+      var password = "password";
+      if ((un == username) && (pw == password)) {
+          return true;
+          }
+          else {
+             alert ("Login was unsuccessful, please check your username and password");
+             return false;
+              }
+    }
+  </script>
+
+  <!--HÄMTAR USERNAME FRÅN LOCALSTORAGE OCH VISAR DET I WELCOMEMESSAGE-->
+  <script>
+    window.onload = function() {
+     var name = localStorage.getItem('username');
+     if (name != "undefined" || name != "null") {
+     document.getElementById('welcomeMessage').innerHTML = "Hello " + name + "!";
+     } 
+     else
+     document.getElementById('welcomeMessage').innerHTML = "Hello!";
+      }
+  </script>
+
 </body>
 </html>
+
+
